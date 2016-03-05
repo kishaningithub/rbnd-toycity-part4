@@ -13,8 +13,12 @@ class Product < Udacidata
     auto_increment if !opts[:id]
     # Set the brand, name, and price normally
     @brand = opts[:brand]
-    @name = opts[:name]
+    @name = opts[:name] ? opts[:name]:opts[:product]
     @price = opts[:price]
+  end
+  
+  def to_s
+    "#{@id} ~ #{@brand} ~ #{@name} ~ #{@price}"
   end
 
   private
