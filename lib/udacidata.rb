@@ -44,10 +44,12 @@ class Udacidata < Module
   end
   
   def self.find(id)
+    check_valid_id(id)
     all.select{ |row| row.id == id }.first
   end
   
   def self.destroy(id)
+    check_valid_id(id)
     table = CSV.table(filename)
     value = NIL
     table.delete_if do |row|
@@ -85,6 +87,10 @@ class Udacidata < Module
       csv << updated_product.object_hash.values
     end
     updated_product  
+  end
+  
+  def self.check_valid_id(id)
+    raise ProductNotFoundError if all.select{ |row| row.id == id }.empty?
   end
   
   def object_hash
