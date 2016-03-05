@@ -4,16 +4,17 @@ module Analyzable
     (products.map {|product| product.price.to_f}.reduce(:+) / products.size).round(2)
   end
   def print_report(products)
-    report = "Average Price: $#{average_price(products)}"
-    report += "Inventory by Brand:"
+    report = []
+    report << "Average Price: $#{average_price(products)}"
+    report << "Inventory by Brand:"
     count_by_brand(products).each do |key, value|
-      report += "  - #{key}: #{value}"
+      report << "  - #{key}: #{value}"
     end
-    report += "Inventory by Name:"
+    report << "Inventory by Name:"
     count_by_name(products).each do |key, value|
-      report += "  - #{key}: #{value}"
+      report << "  - #{key}: #{value}"
     end
-    report
+    report.join("\n")
   end
   def count_by_brand(products)
     hash = {}

@@ -16,10 +16,6 @@ class Product < Udacidata
     @name = opts[:name] ? opts[:name]:opts[:product]
     @price = opts[:price]
   end
-  
-  def to_s
-    "#{@id} ~ #{@brand} ~ #{@name} ~ #{@price}"
-  end
 
   private
 
